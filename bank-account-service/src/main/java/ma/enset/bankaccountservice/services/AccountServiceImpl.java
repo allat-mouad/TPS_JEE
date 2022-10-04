@@ -30,4 +30,21 @@ public class AccountServiceImpl implements AccountService {
      BankAccountResponceDTO bankAccountResponceDTO= accountMapper.fromBankAccount2(savedBankAccount);
      return bankAccountResponceDTO;
     }
+
+    @Override
+    public BankAccountResponceDTO updateAccount(String id, BankAccountRequestDTO bankAccountDTO) {
+        BankAccount bankAccount1=bankAccountRepository.findById(id)
+                .orElseThrow(()->new RuntimeException(String.format("Account %s not found",id)));
+        BankAccount bankAccount=accountMapper.fromBankAccountRequestDTO(bankAccountDTO);
+        bankAccount.setId(id);
+        BankAccount savedBankAccount= bankAccountRepository.save(bankAccount);
+        BankAccountResponceDTO bankAccountResponceDTO= accountMapper.fromBankAccount2(savedBankAccount);
+        return bankAccountResponceDTO;
+    }
+    @Override
+    public void deleteAccount(String id) {
+        BankAccount bankAccount1=bankAccountRepository.findById(id)
+                .orElseThrow(()->new RuntimeException(String.format("Account %s not found",id)));
+       bankAccountRepository.deleteById(id);
+    }
 }
