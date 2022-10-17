@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import ma.enset.bankaccountservice.dto.BankAccountRequestDTO;
 import ma.enset.bankaccountservice.dto.BankAccountResponceDTO;
 import ma.enset.bankaccountservice.entities.BankAccount;
+import ma.enset.bankaccountservice.entities.Customer;
 import ma.enset.bankaccountservice.repositories.BankAccountRepository;
+import ma.enset.bankaccountservice.repositories.CustomerRepository;
 import ma.enset.bankaccountservice.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -17,10 +19,15 @@ import java.util.List;
 @AllArgsConstructor
 public class BankAccountGraphQLController {
     private BankAccountRepository bankAccountRepository;
+    private CustomerRepository customerRepository;
     private AccountService accountService;
     @QueryMapping
     public List<BankAccount> accountsList(){
         return bankAccountRepository.findAll();
+    }
+    @QueryMapping
+    public List<Customer> customersList(){
+        return customerRepository.findAll();
     }
     @QueryMapping
     public BankAccount bankAccountById(@Argument String id){

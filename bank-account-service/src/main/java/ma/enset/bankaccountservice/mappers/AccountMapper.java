@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
-@Mapper
+    @Mapper(componentModel = "spring")
 public interface AccountMapper {
     AccountMapper INSTANCE= Mappers.getMapper(AccountMapper.class);
     BankAccountRequestDTO fromBankAccount(BankAccount bankAccount);
