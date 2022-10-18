@@ -20,11 +20,11 @@ public class ApMicroServicesApplication {
     @Bean
     CommandLineRunner start(CustomerService customerService){
         return  args -> {
-            Stream.of("Amine", "Karim", "Omar").forEach(c -> {
+            Stream.of("C01", "C02", "C03").forEach(c -> {
                 CustomerRequestDTO customer = new CustomerRequestDTO();
                 customer.setName(c);
                 customer.setEmail(c+"@gmail.com");
-                customer.setId(UUID.randomUUID().toString());
+                customer.setId(c);
                 customerService.save(customer);
             });
         };
