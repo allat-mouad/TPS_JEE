@@ -21,8 +21,13 @@ public class InvoiceRestController {
     public InvoiceResponseDTO getInvoice(@PathVariable String id){
         return invoiceService.getInvoiceById(id);
     }
-    @GetMapping(path = "/invoices/{customerId}")
+
+    @GetMapping(path = "/invoicesByCustomerId/{customerId}")
     public List<InvoiceResponseDTO>  getInvoicesByCustomerId(@PathVariable String customerId){
         return invoiceService.getInvoicesByCustomerId(customerId);
+    }
+    @GetMapping(path = "/invoices")
+    public List<InvoiceResponseDTO>  allInvoices(){
+        return invoiceService.allInvoices();
     }
 }

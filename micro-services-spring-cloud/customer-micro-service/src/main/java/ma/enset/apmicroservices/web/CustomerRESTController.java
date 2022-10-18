@@ -16,17 +16,17 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CustomerRESTController {
     private CustomerService customerService;
-    @GetMapping(path = "/cutomers")
+    @GetMapping(path = "/customers")
     public List<CustomerResponseDTO> cutomers(){
         return customerService.listCustomers();
     }
-    @PostMapping(path ="/cutomers")
+    @PostMapping(path ="/customers")
     public CustomerResponseDTO save(@RequestBody CustomerRequestDTO customerRequestDTO)
     {
         customerRequestDTO.setId(UUID.randomUUID().toString());
         return customerService.save(customerRequestDTO);
     }
-    @GetMapping(path = "/cutomers/{id}")
+    @GetMapping(path = "/customers/{id}")
     public CustomerResponseDTO getCutomers(@PathVariable String id){
         return customerService.getCustomer(id);
     }
