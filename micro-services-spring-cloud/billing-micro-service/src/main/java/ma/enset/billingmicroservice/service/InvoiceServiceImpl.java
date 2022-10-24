@@ -5,6 +5,7 @@ import ma.enset.billingmicroservice.dto.InvoiceRequestDTO;
 import ma.enset.billingmicroservice.dto.InvoiceResponseDTO;
 import ma.enset.billingmicroservice.entities.Customer;
 import ma.enset.billingmicroservice.entities.Invoice;
+import ma.enset.billingmicroservice.exceptions.CustomerNotFoundException;
 import ma.enset.billingmicroservice.mappers.InvoiceMapper;
 import ma.enset.billingmicroservice.openfeign.CustomerRestClient;
 import ma.enset.billingmicroservice.repositories.InvoiceRepository;
@@ -25,10 +26,19 @@ public class InvoiceServiceImpl implements InvoiceService {
     private CustomerRestClient customerRestClient;
     @Override
     public InvoiceResponseDTO save(InvoiceRequestDTO invoiceRequestDTO) {
+        Customer customer=null;
+        try {
+             customer = customerRestClient.getCustomer(invoiceRequestDTO.getCustomerId());
+        }catch (CustomerNotFoundException e){
+            throw  new CustomerNotFoundException(invoiceRequestDTO.getCustomerId());
+        }
+
         Invoice invoice= invoiceMapper.invoiceRequestDTOToInvoice(invoiceRequestDTO);
         invoice.setId(UUID.randomUUID().toString());
         invoice.setDate(new Date());
+
         Invoice savedInvoice = invoiceRepository.save(invoice);
+        savedInvoice.setCustomer(customer);
         return invoiceMapper.invoiceToInvoiceResponseDTO(savedInvoice);
     }
 
