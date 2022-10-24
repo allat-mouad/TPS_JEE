@@ -1,10 +1,14 @@
 package ws;
 
-import java.util.Date;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 
+import java.util.Date;
+@XmlRootElement(name = "compte")
 public class Compte {
     private int code;
     private double solde;
+    //@XmlTransient means that jaxb will ignore this attribute
     private Date dateCreation;
 
     public Compte(int code, double solde, Date dateCreation) {

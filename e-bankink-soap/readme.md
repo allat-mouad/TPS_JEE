@@ -75,4 +75,13 @@
 > ## 5- View WSDL :
 ![img_2.png](img_2.png)
 > ## 6- testing web service using SOAP UI:
+**Conversion methode**:
+![img_3.png](img_3.png)
+**GetCompte methode**:
+![img_4.png](img_4.png)
+**Get All accounts methode**:
+![img_5.png](img_5.png)
+**generate proxy**:
+![img_6.png](img_6.png)
+
 

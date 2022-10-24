@@ -13,7 +13,7 @@ public class BanqueService {
     public double conversion(@WebParam(name = "montant") double mt){
         return mt*10.54;
     }
-    @WebMethod(operationName = "Compte")
+    @WebMethod(operationName = "getCompte")
     public Compte getCompte(@WebParam(name = "code")int code){
         return new Compte(code,Math.random()*9888,new Date());
     }
