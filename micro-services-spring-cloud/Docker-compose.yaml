@@ -1,0 +1,74 @@
+version: "3.1"
+
+services:
+  eureka-service:
+    image: mouadalt/eureka-service:v1
+    environment:
+      - server.port=8761
+      - eureka.client.fetch-registry=false
+      - eureka.client.register-with-eureka=false
+    ports:
+      - 8761:8761
+
+  customer-service:
+    image: mouadalt/e-banking-microservices:v1
+    environment:
+      - eureka.instance.prefer-ip-address=true
+      - server.port=8082
+      - spring.application.name=CUSTOMER-SERVICE
+      - spring.h2.console.enabled=true
+      - spring.cloud.discovery.enabled=true
+      - spring.datasource.url=jdbc:h2:mem:customer-db
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+    # disabled port mapping so that access is only possible through GateWay
+    #ports:
+    #  - 8082:8082
+    depends_on:
+      - eureka-service
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/api/health-beat" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+
+  billing-service:
+    image: mouadalt/billing-service:v1
+    restart: on-failure
+    environment:
+      - eureka.instance.prefer-ip-address=true
+      - server.port=8082
+      - spring.application.name=CUSTOMER-SERVICE
+      - spring.h2.console.enabled=true
+      - spring.cloud.discovery.enabled=true
+      - spring.datasource.url=jdbc:h2:mem:customerdb
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+    ports:
+      - 8083:8083
+    depends_on:
+      - customer-service
+      - eureka-service
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8083/api/health-beat" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+
+
+  gateway-service:
+    image: mouadalt/gateway-microservice:v1
+    environment:
+      - eureka.instance.prefer-ip-address=true
+      - server.port=9999
+      - spring.application.name=GATEWAY
+      - spring.cloud.discovery.enabled=true
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+
+    ports:
+      - 9999:9999
+    depends_on:
+      - billing-service
+      - customer-service
+      - eureka-service
+

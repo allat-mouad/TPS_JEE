@@ -11,5 +11,4 @@ public interface CustomerService {
     public CustomerResponseDTO update(CustomerRequestDTO customerRequestDTO);
     public List<CustomerResponseDTO> listCustomers();
 
-
 }

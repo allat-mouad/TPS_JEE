@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
+@Builder
 public class Customer {
     @Id
     private String id;

@@ -3,10 +3,10 @@ package ma.enset.billingmicroservice;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class BillingMicroServiceApplicationTests {
 
-    @Test
+  //  @Test
     void contextLoads() {
     }
 
