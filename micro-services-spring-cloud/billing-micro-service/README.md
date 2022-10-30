@@ -6,7 +6,7 @@
     spring.application.name=BILLING-SERVICE
     spring.cloud.discovery.enabled=true
     eureka.instance.prefer-ip-address=true
-##Project structure
+## Project structure
 ![img.png](img.png)
 ## 1 - entities
     @Entity
