@@ -1,4 +1,4 @@
-package org.sid.billing;
+package org.sid.billingservice;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

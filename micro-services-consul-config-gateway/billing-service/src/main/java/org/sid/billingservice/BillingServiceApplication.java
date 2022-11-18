@@ -1,4 +1,4 @@
-package org.sid.billing;
+package org.sid.billingservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,12 +10,12 @@ import org.springframework.vault.core.VaultTemplate;
 import java.util.Map;
 
 @SpringBootApplication
-public class BillingApplication {
+public class BillingServiceApplication {
 	@Autowired
 	private VaultTemplate vaultTemplate;
 
 	public static void main(String[] args) {
-		SpringApplication.run(BillingApplication.class, args);
+		SpringApplication.run(BillingServiceApplication.class, args);
 	}
 	@Bean
 	CommandLineRunner commandLineRunner(){
