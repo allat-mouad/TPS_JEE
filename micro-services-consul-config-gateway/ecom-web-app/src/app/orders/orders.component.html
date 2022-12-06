@@ -1,5 +1,5 @@
 <div class="container">
-  <table class="table" *ngIf="orders">
+  <table class="uk-table uk-table-striped"  *ngIf="orders">
     <thead>
     <tr>
       <th>ID</th> <th>Date</th> <th>Status</th><th>CustomerId</th>
@@ -12,7 +12,7 @@
       <td>{{o.status}}</td>
       <td>{{o.customerId}}</td>
       <td>
-        <button class="btn btn-success" (click)="getOrderDetails(o)">Order Details</button>
+        <button class="uk-button uk-button-primary" (click)="getOrderDetails(o)">Order Details</button>
       </td>
     </tr>
     </tbody>
