@@ -1,9 +1,9 @@
-#micro-services-consul-config-gateway
-##App architecture
+# micro-services-consul-config-gateway
+## App architecture
 ![img.png](img.png)
-##consule serivices
+## consule serivices
 ![img_1.png](img_1.png)
-##customer service API
+## customer service API
 ![img_2.png](img_2.png)
 ##Order service API
 ![img_3.png](img_3.png)
