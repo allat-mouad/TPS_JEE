@@ -13,4 +13,5 @@ public interface CustomerRestClientService {
     public Customer customerById(@PathVariable Long id);
     @GetMapping("/customers?projection=fullCustomer")
     public PagedModel<Customer> allCustomers();
+
 }
